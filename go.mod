@@ -1,6 +1,6 @@
 module platform-contracts
 
-go 1.26.8
+go 1.24.0
 
 require (
 	google.golang.org/grpc v1.84.0
