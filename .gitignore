@@ -1,0 +1,10 @@
+# OS & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Buf local caches
+.buf/

@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package events.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "platform-contracts/gen/go/events/v1;eventsv1";
+
+// -------------------------------------------------------------
+// Kafka Event Envelope
+// -------------------------------------------------------------
+message EventEnvelope {
+  string event_id = 1;                           // UUIDv7
+  string event_type = 2;                         // e.g. "auth.user_registered"
+  google.protobuf.Timestamp timestamp = 3;       // Event emission time
+  string trace_id = 4;                           // OpenTelemetry trace ID
+  string producer = 5;                           // Service name (e.g. "identity-service")
+
+  oneof payload {
+    UserRegisteredEvent user_registered = 10;
+    UserLoggedInEvent user_logged_in = 11;
+    PasswordResetRequestedEvent password_reset_requested = 12;
+    PasswordChangedEvent password_changed = 13;
+    MfaToggledEvent mfa_toggled = 14;
+    SessionRevokedEvent session_revoked = 15;
+    SecurityAlertEvent security_alert = 16;
+  }
+}
+
+// -------------------------------------------------------------
+// User Registered Event
+// -------------------------------------------------------------
+message UserRegisteredEvent {
+  string user_id = 1;
+  string email = 2;
+  string verification_code = 3;
+  google.protobuf.Timestamp expires_at = 4;
+}
+
+// -------------------------------------------------------------
+// User Logged In Event
+// -------------------------------------------------------------
+message UserLoggedInEvent {
+  string user_id = 1;
+  string session_id = 2;
+  string ip_address = 3;
+  string user_agent = 4;
+  string device_name = 5;
+  string location = 6;
+  bool is_new_device = 7;
+  bool is_suspicious = 8;
+  google.protobuf.Timestamp logged_in_at = 9;
+}
+
+// -------------------------------------------------------------
+// Password Reset Requested Event
+// -------------------------------------------------------------
+message PasswordResetRequestedEvent {
+  string user_id = 1;
+  string email = 2;
+  string reset_token = 3;
+  google.protobuf.Timestamp expires_at = 4;
+}
+
+// -------------------------------------------------------------
+// Password Changed Event
+// -------------------------------------------------------------
+message PasswordChangedEvent {
+  string user_id = 1;
+  string session_id = 2;
+  string ip_address = 3;
+  google.protobuf.Timestamp changed_at = 4;
+}
+
+// -------------------------------------------------------------
+// MFA Toggled Event
+// -------------------------------------------------------------
+message MfaToggledEvent {
+  string user_id = 1;
+  bool enabled = 2;
+  string method = 3;                             // "totp", "webauthn"
+  google.protobuf.Timestamp toggled_at = 4;
+}
+
+// -------------------------------------------------------------
+// Session Revoked Event
+// -------------------------------------------------------------
+message SessionRevokedEvent {
+  string user_id = 1;
+  string session_id = 2;                         // Specific session or "all"
+  string reason = 3;                             // "user_requested", "password_reset", "admin_ban", "suspicious_reuse"
+  google.protobuf.Timestamp revoked_at = 4;
+}
+
+// -------------------------------------------------------------
+// Security Alert Event
+// -------------------------------------------------------------
+message SecurityAlertEvent {
+  string user_id = 1;
+  string alert_type = 2;                         // "refresh_token_reuse", "bruteforce_attempt", "impossible_travel"
+  string description = 3;
+  string ip_address = 4;
+  string user_agent = 5;
+  string severity = 6;                           // "low", "medium", "high", "critical"
+  google.protobuf.Timestamp detected_at = 7;
+}
