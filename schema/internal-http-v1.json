@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sso.local/contracts/internal-http-v1.json",
+  "title": "Internal service HTTP contract v1",
+  "description": "Server-authenticated TLS HTTP with X-Service-Token caller credentials and forwarded live actor credentials; JSON bodies never accept caller-selected actor IDs. Client-certificate authentication is not claimed.",
+  "x-endpoints": [
+    {"method":"POST","path":"/internal/v1/introspect","request":"IntrospectRequest","response":"IntrospectResponse","owner":"identity"},
+    {"method":"GET","path":"/internal/v1/admin/users","query":"SearchUsersRequest","response":"UsersResponse","owner":"identity"},
+    {"method":"POST","path":"/internal/v1/admin/users/{id}/ban","request":"BanRequest","response":"BanResponse","owner":"identity"},
+    {"method":"POST","path":"/internal/v1/admin/users/{id}/unban","request":"BanRequest","response":"BanResponse","owner":"identity"},
+    {"method":"GET","path":"/internal/v1/users/{id}/notification-settings","response":"NotificationSettings","owner":"profile"},
+    {"method":"GET","path":"/internal/v1/deliveries","response":"DeliveriesResponse","owner":"notification"},
+    {"method":"POST","path":"/internal/v1/deliveries/{id}/replay","request":"EmptyRequest","response":"ReplayResponse","owner":"notification"},
+    {"method":"GET","path":"/internal/v1/quarantine","response":"QuarantineResponse","owner":"profile,notification,audit"},
+    {"method":"POST","path":"/internal/v1/quarantine/{id}/replay","request":"ReplayRequest","response":"ReplayResponse","owner":"profile,notification,audit"}
+  ],
+  "$defs": {
+    "IntrospectRequest": {"type":"object","additionalProperties":false,"properties":{"session_cookie":{"type":"string"},"access_token":{"type":"string"},"csrf_token":{"type":"string"},"method":{"type":"string"},"origin":{"type":"string"},"permission":{"type":"string"},"require_mfa":{"type":"boolean"}}},
+    "IntrospectResponse": {"type":"object","additionalProperties":false,"required":["active","user_id","email","session_id","roles","permissions","mfa_verified"],"properties":{"active":{"type":"boolean"},"user_id":{"type":"string","format":"uuid"},"email":{"type":"string"},"session_id":{"type":"string","format":"uuid"},"roles":{"type":"array","items":{"type":"string"}},"permissions":{"type":"array","items":{"type":"string"}},"mfa_verified":{"type":"boolean"}}},
+    "SearchUsersRequest": {"type":"object","additionalProperties":false,"properties":{"query":{"type":"string","maxLength":254}}},
+    "BanRequest": {"type":"object","additionalProperties":false,"properties":{"reason":{"type":"string","maxLength":500}}},
+    "BanResponse": {"type":"object","additionalProperties":false,"required":["user_id","is_banned"],"properties":{"user_id":{"type":"string","format":"uuid"},"is_banned":{"type":"boolean"}}},
+    "UserSummary": {"type":"object","additionalProperties":false,"required":["id","email","is_verified","is_banned","ban_reason","created_at","mfa_enabled","roles"],"properties":{"id":{"type":"string","format":"uuid"},"email":{"type":"string"},"is_verified":{"type":"boolean"},"is_banned":{"type":"boolean"},"ban_reason":{"type":["string","null"]},"created_at":{"type":"string","format":"date-time"},"mfa_enabled":{"type":"boolean"},"roles":{"type":"array","items":{"type":"string"}}}},
+    "UsersResponse": {"type":"object","additionalProperties":false,"required":["users"],"properties":{"users":{"type":"array","items":{"$ref":"#/$defs/UserSummary"}}}},
+    "NotificationSettings": {"type":"object","additionalProperties":false,"required":["email","telegram_chat_id","email_login_alerts","email_security_alerts","telegram_login_alerts","telegram_security_alerts"],"properties":{"email":{"type":"string"},"telegram_chat_id":{"type":["string","null"]},"email_login_alerts":{"type":"boolean"},"email_security_alerts":{"type":"boolean"},"telegram_login_alerts":{"type":"boolean"},"telegram_security_alerts":{"type":"boolean"}}},
+    "Delivery": {"type":"object","additionalProperties":false,"required":["id","user_id","channel","status","attempts","next_attempt_at","last_error","message_id","created_at","delivered_at","ambiguous"],"properties":{"id":{"type":"string","format":"uuid"},"user_id":{"type":"string","format":"uuid"},"channel":{"type":"string","enum":["email","telegram"]},"status":{"type":"string","enum":["pending","leased","retry","sent","failed"]},"attempts":{"type":"integer","minimum":0},"next_attempt_at":{"type":"string","format":"date-time"},"last_error":{"type":["string","null"]},"message_id":{"type":"string"},"created_at":{"type":"string","format":"date-time"},"delivered_at":{"type":["string","null"],"format":"date-time"},"ambiguous":{"type":"boolean"}}},
+    "DeliveriesResponse": {"type":"array","items":{"$ref":"#/$defs/Delivery"}},
+    "QuarantineRecord": {"type":"object","additionalProperties":false,"required":["id","topic","partition","offset","reason","created_at","replayed_at","owner"],"properties":{"id":{"type":"string","format":"uuid"},"topic":{"type":"string"},"partition":{"type":"integer","minimum":0},"offset":{"type":"integer","minimum":0},"reason":{"type":"string"},"created_at":{"type":"string","format":"date-time"},"replayed_at":{"type":["string","null"],"format":"date-time"},"owner":{"type":"string","enum":["profile","notification","audit"]}}},
+    "QuarantineResponse": {"type":"array","items":{"$ref":"#/$defs/QuarantineRecord"}},
+    "ReplayRequest": {"type":"object","additionalProperties":false,"properties":{"corrected_event":{"$ref":"events-v1.json"}}},
+    "ReplayResponse": {"type":"object","additionalProperties":false,"required":["status"],"properties":{"status":{"type":"string","enum":["queued","replayed"]}}},
+    "EmptyRequest": {"type":"object","additionalProperties":false,"properties":{}},
+    "ErrorResponse": {"type":"object","additionalProperties":false,"required":["error","code"],"properties":{"error":{"type":"string"},"code":{"type":"string"}}}
+  }
+}
