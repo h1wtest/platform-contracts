@@ -26,8 +26,13 @@ def main():
         raise SystemExit('Trusted compatibility baseline SHA is required')
     if baseline:
         git('cat-file', '-e', baseline + '^{commit}')
-    for name in ('events-v1', 'internal-http-v1'):
-        path = f'schema/{name}.json'
+    paths = {p.as_posix() for p in Path('schema').glob('*.json')}
+    if baseline:
+        paths.update(git('ls-tree', '-r', '--name-only', baseline, '--', 'schema').splitlines())
+    for path in sorted(paths):
+        name = Path(path).stem
+        if not Path(path).is_file():
+            raise SystemExit(f'Published schema removed: {path}')
         current = json.loads(Path(path).read_text())
         if not baseline:
             print(f'Initial {name} contract: repository root has no predecessor.')

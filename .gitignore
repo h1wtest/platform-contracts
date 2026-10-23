@@ -13,3 +13,6 @@ Thumbs.db
 target/
 __pycache__/
 *.py[cod]
+
+# Local verification artifacts
+.local/

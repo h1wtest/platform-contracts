@@ -84,7 +84,7 @@ impl Serialize for IntrospectRequest {
                 serde_json::to_value(value).map_err(serde::ser::Error::custom)?,
             );
         }
-        if let Some(value) = &self.require_mfa {
+        if let Some(value) = self.require_mfa {
             fields.insert(
                 "require_mfa".into(),
                 serde_json::to_value(value).map_err(serde::ser::Error::custom)?,
@@ -144,11 +144,11 @@ impl Serialize for IntrospectResponse {
         let mut fields = serde_json::Map::new();
         fields.insert(
             "active".into(),
-            serde_json::to_value(&self.active).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.active).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "user_id".into(),
-            serde_json::to_value(&self.user_id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.user_id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "email".into(),
@@ -156,7 +156,7 @@ impl Serialize for IntrospectResponse {
         );
         fields.insert(
             "session_id".into(),
-            serde_json::to_value(&self.session_id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.session_id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "roles".into(),
@@ -168,7 +168,7 @@ impl Serialize for IntrospectResponse {
         );
         fields.insert(
             "mfa_verified".into(),
-            serde_json::to_value(&self.mfa_verified).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.mfa_verified).map_err(serde::ser::Error::custom)?,
         );
         let value = serde_json::Value::Object(fields);
         crate::http_validation::validate("IntrospectResponse", &value)
@@ -286,11 +286,11 @@ impl Serialize for BanResponse {
         let mut fields = serde_json::Map::new();
         fields.insert(
             "user_id".into(),
-            serde_json::to_value(&self.user_id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.user_id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "is_banned".into(),
-            serde_json::to_value(&self.is_banned).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.is_banned).map_err(serde::ser::Error::custom)?,
         );
         let value = serde_json::Value::Object(fields);
         crate::http_validation::validate("BanResponse", &value)
@@ -349,7 +349,7 @@ impl Serialize for UserSummary {
         let mut fields = serde_json::Map::new();
         fields.insert(
             "id".into(),
-            serde_json::to_value(&self.id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "email".into(),
@@ -357,11 +357,11 @@ impl Serialize for UserSummary {
         );
         fields.insert(
             "is_verified".into(),
-            serde_json::to_value(&self.is_verified).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.is_verified).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "is_banned".into(),
-            serde_json::to_value(&self.is_banned).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.is_banned).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "ban_reason".into(),
@@ -369,11 +369,11 @@ impl Serialize for UserSummary {
         );
         fields.insert(
             "created_at".into(),
-            serde_json::to_value(&self.created_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.created_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "mfa_enabled".into(),
-            serde_json::to_value(&self.mfa_enabled).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.mfa_enabled).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "roles".into(),
@@ -474,19 +474,19 @@ impl Serialize for NotificationSettings {
         );
         fields.insert(
             "email_login_alerts".into(),
-            serde_json::to_value(&self.email_login_alerts).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.email_login_alerts).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "email_security_alerts".into(),
-            serde_json::to_value(&self.email_security_alerts).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.email_security_alerts).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "telegram_login_alerts".into(),
-            serde_json::to_value(&self.telegram_login_alerts).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.telegram_login_alerts).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "telegram_security_alerts".into(),
-            serde_json::to_value(&self.telegram_security_alerts)
+            serde_json::to_value(self.telegram_security_alerts)
                 .map_err(serde::ser::Error::custom)?,
         );
         let value = serde_json::Value::Object(fields);
@@ -553,11 +553,11 @@ impl Serialize for Delivery {
         let mut fields = serde_json::Map::new();
         fields.insert(
             "id".into(),
-            serde_json::to_value(&self.id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "user_id".into(),
-            serde_json::to_value(&self.user_id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.user_id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "channel".into(),
@@ -569,11 +569,11 @@ impl Serialize for Delivery {
         );
         fields.insert(
             "attempts".into(),
-            serde_json::to_value(&self.attempts).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.attempts).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "next_attempt_at".into(),
-            serde_json::to_value(&self.next_attempt_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.next_attempt_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "last_error".into(),
@@ -585,15 +585,15 @@ impl Serialize for Delivery {
         );
         fields.insert(
             "created_at".into(),
-            serde_json::to_value(&self.created_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.created_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "delivered_at".into(),
-            serde_json::to_value(&self.delivered_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.delivered_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "ambiguous".into(),
-            serde_json::to_value(&self.ambiguous).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.ambiguous).map_err(serde::ser::Error::custom)?,
         );
         let value = serde_json::Value::Object(fields);
         crate::http_validation::validate("Delivery", &value).map_err(serde::ser::Error::custom)?;
@@ -653,7 +653,7 @@ impl Serialize for QuarantineRecord {
         let mut fields = serde_json::Map::new();
         fields.insert(
             "id".into(),
-            serde_json::to_value(&self.id).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.id).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "topic".into(),
@@ -661,11 +661,11 @@ impl Serialize for QuarantineRecord {
         );
         fields.insert(
             "partition".into(),
-            serde_json::to_value(&self.partition).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.partition).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "offset".into(),
-            serde_json::to_value(&self.offset).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.offset).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "reason".into(),
@@ -673,11 +673,11 @@ impl Serialize for QuarantineRecord {
         );
         fields.insert(
             "created_at".into(),
-            serde_json::to_value(&self.created_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.created_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "replayed_at".into(),
-            serde_json::to_value(&self.replayed_at).map_err(serde::ser::Error::custom)?,
+            serde_json::to_value(self.replayed_at).map_err(serde::ser::Error::custom)?,
         );
         fields.insert(
             "owner".into(),

@@ -28,7 +28,7 @@ jobs:
       - name: Regenerate and reject stale DTOs
         run: |
           python3 scripts/generate.py
-          git diff --exit-code -- gen/go/events/types.go rust/src/types.rs gen/go/internalhttp/types.go rust/src/http.rs
+          git diff --exit-code -- gen rust/src openapi release-manifest.json
       - name: Check v1 compatibility against trusted predecessor
         env:
           EVENT_NAME: ${{ github.event_name }}

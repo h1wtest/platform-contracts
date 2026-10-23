@@ -1,5 +1,7 @@
 # platform-contracts
 
+The repository-local [MIT license](LICENSE), copyright 2026 Subscription Platform contributors, covers the contributors' own authored template schemas, generators, validators, generated output from those own schemas and documentation. Third-party dependencies, copied third-party material and generated upstream content retain their original licenses and notices; this grant does not relicense third-party or unreviewed legacy material. The source artifact includes this notice at `/LICENSE`.
+
 Canonical contracts are `schema/events-v1.json` and
 `schema/internal-http-v1.json` (JSON Schema 2020-12). Kafka and HTTP integration
 use JSON, not protobuf/gRPC. Go imports are `platform-contracts/gen/go/events`
@@ -149,3 +151,17 @@ Identity readiness depends on SQL, not Kafka; SQL backlog metrics retain
 `is_processed`, `created_at`, and `retry_count` columns.
 
 SQL lease/secret tests live in `identity-service/tests/outbox_security.rs` and were exercised by the controller against real isolated PostgreSQL and an authenticated TLS/SCRAM Kafka broker. They are ignored by default because external dependencies are required. Run the SQL tests serially against a fresh **separate** outbox database; run the relay case against another fresh database and real six-partition topics. Do not combine these with auth tests in one shared pending-outbox database. Exact commands and the purpose-separated signing/encryption environment are in identity-service's README. Controller evidence also includes 36 selected identity SQL regressions, rekey, actual relay, six signing/rotation checks and strict HTTPS/browser OIDC integration; those are cross-service acceptance evidence, not standalone contract tests. No broker mock or successful fake delivery is counted as acceptance.
+
+## Generic platform v2
+
+Immutable v1 schemas/imports remain unchanged. New Go packages: `gen/go/eventsv2`, `gen/go/internalhttpv2`, `gen/go/businessv1`. Rust modules: `eventsv2`, `internalhttpv2`, `businessv1`. TypeScript wire DTOs/validators/checked client: `gen/typescript`. Public canonical registry `schema/business-v1.json`, domain bundles, `openapi/public-v1.json`; private registry/OpenAPI `internal-http-v2.json` / `openapi/internal-v2.json`. `release-manifest.json` pins schema/OpenAPI bytes by SHA256.
+
+Envelope v2: UUIDv7 event ID, canonical lowercase aggregate UUID, exact producer/type/aggregate mapping, contiguous emitted-event aggregate_version (not sparse optimistic domain version), UTC timestamp, exactly one typed payload or encrypted command. Optional correlation/causation UUIDs and W3C traceparent are validated. Nested unknown/missing/null fields, exact USDT6 money, integer bounds and duplicate JSON keys are rejected. Unsupported generator keywords fail closed. PATCH omitted/null/value uses Go wire.Optional, Rust nested Option and TypeScript optional nullable fields.
+
+Topics: identity.events.v2, profile.events.v2, catalog.events.v1, billing.events.v1, subscription.events.v1, referral.events.v1, external.events.v1, notification.events.v2, notification.commands.v2, platform.dlq.v2 (metadata only). New business family .v1 names intentionally carry envelope schema_version2. Six partitions, aggregate UUID key. One producer/aggregate-type/aggregate-ID stream belongs to one topic. Encrypted identity commands use delivery_command/event_id/version1; external ingress uses external_event/event_id/version1. Public identity user/profile user streams are independent contiguous counters. Profile updates and Telegram changes share profile user stream. Consumers receipt valid irrelevant events as no-op to advance sequence.
+
+Canonical `x-events[*].x-aggregate-field` binds every unambiguous public payload owner UUID to envelope aggregate_id in Go/Rust/TypeScript codecs. Payment review carries required decision_id. Sensitive commands bind to event_id, not decrypted recipient user. Rate global/partner and stable template UUID derivations have explicit owner-binding policies in the registry: those domain-derived IDs remain validated by the owner, never replaced by a fabricated user UUID. Lost prepare recovery is GET `/internal/v2/subscription-actions/by-operation/{operation_id}` with the existing PreparedAction DTO and billing-only authorization.
+
+Secrets belong only in purpose-encrypted commands, never public events/audit. ValidatePayload/validate_payload checks decrypted DTOs. Provider evidence public shape is a closed scalar allowlist; raw bytes remain owner-private. Quarantine corrected envelopes are validated, never unchecked payloads. Administrative permission/ownership checks remain service responsibilities.
+
+Run make generate with pinned Go1.26.10/Rust1.99.0 and uv Python; parent runs make test and frontend strict TypeScript validation after integration. CI rejects stale generated outputs/OpenAPI/manifest and checks trusted predecessor compatibility. Operational v1-to-v2 cutover requires supporting consumers, additive owner migrations, preserved event IDs and proven drained old partitions; generated code alone does not claim that cutover.

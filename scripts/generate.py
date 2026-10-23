@@ -48,3 +48,9 @@ subprocess.run(['gofmt', '-w', str(root / 'gen/go/events/types.go')], check=True
 from generate_http import generate as generate_http
 generate_http()
 subprocess.run(['rustfmt', '+1.99.0', '--edition', '2021', str(root / 'rust/src/types.rs'), str(root / 'rust/src/http.rs')], check=True)
+from generate_v2 import generate as generate_v2
+generate_v2()
+v2_go = [str(path) for package in ('businessv1', 'internalhttpv2', 'eventsv2', 'wire') for path in (root / 'gen/go' / package).glob('*.go')]
+subprocess.run(['gofmt', '-w', *v2_go], check=True)
+v2_rust = [str(path) for path in (root / 'rust/src').glob('*v2*.rs')] + [str(root / 'rust/src/businessv1.rs'), str(root / 'rust/src/businessv1_types.rs')]
+subprocess.run(['rustfmt', '+1.99.0', '--edition', '2021', *v2_rust], check=True)

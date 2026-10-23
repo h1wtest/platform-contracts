@@ -93,12 +93,14 @@ def generate(format_go=True):
             rust += ['        })', '    }', '}', '']
             mutable = 'mut ' if definition.get('properties') else ''
             rust += [f'impl Serialize for {typename} {{', '    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {', f'        let {mutable}fields = serde_json::Map::new();']
-            for field in definition.get('properties', {}):
+            for field, field_rule in definition.get('properties', {}).items():
                 optional = field not in definition.get('required', [])
+                copy_leaf = rust_type(field_rule) in ('i64', 'bool', 'Uuid', 'DateTime<Utc>')
+                borrow = '' if copy_leaf else '&'
                 if optional:
-                    rust += [f'        if let Some(value) = &self.{field} {{', f'            fields.insert("{field}".into(), serde_json::to_value(value).map_err(serde::ser::Error::custom)?);', '        }']
+                    rust += [f'        if let Some(value) = {borrow}self.{field} {{', f'            fields.insert("{field}".into(), serde_json::to_value(value).map_err(serde::ser::Error::custom)?);', '        }']
                 else:
-                    rust += [f'        fields.insert("{field}".into(), serde_json::to_value(&self.{field}).map_err(serde::ser::Error::custom)?);']
+                    rust += [f'        fields.insert("{field}".into(), serde_json::to_value({borrow}self.{field}).map_err(serde::ser::Error::custom)?);']
             rust += ['        let value = serde_json::Value::Object(fields);', f'        crate::http_validation::validate("{typename}", &value).map_err(serde::ser::Error::custom)?;', '        value.serialize(serializer)', '    }', '}', '']
         go += [f'func (v *{typename}) UnmarshalJSON(data []byte) error {{', f'    if err := validateHTTP("{typename}", data); err != nil {{ return err }}', f'    type wire {typename}', '    var decoded wire', '    if err := json.Unmarshal(data, &decoded); err != nil { return err }', f'    *v = {typename}(decoded)', '    return nil', '}', '', f'func (v {typename}) MarshalJSON() ([]byte, error) {{', f'    type wire {typename}', '    data, err := json.Marshal(wire(v))', '    if err != nil { return nil, err }', f'    if err := validateHTTP("{typename}", data); err != nil {{ return nil, err }}', '    return data, nil', '}', '']
     go += ['const CanonicalSchema = `' + json.dumps(schema, separators=(',', ':')) + '`', '']
