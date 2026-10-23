@@ -28,8 +28,8 @@ read the generated schema definition, so field validation and DTOs share one sou
 Behavior tests exercise real serialized envelopes and strict secret separation.
 CI scans complete Git history with redacted output before installing dependencies,
 regenerates, checks both language builds/tests with the pinned Go and Rust toolchains,
-audits dependencies and builds a commit-tagged, non-executable schema artifact without
-publishing. Cargo commands require the checked-in lockfile. Push, PR and manual dispatch
+and builds a commit-tagged, non-executable schema artifact without publishing.
+Vulnerability scanning was removed by the owner; do not run dependency or image vulnerability scanners. Full-history secret scanning remains enabled. Cargo commands require the checked-in lockfile. Push, PR and manual dispatch
 events use the same gate; initial publication uses push/PR because GitHub only enables
 manual dispatch after the workflow exists on the default branch.
 The scratch image contains both canonical schemas, Go package sources (including
