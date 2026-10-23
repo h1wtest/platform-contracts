@@ -8,3 +8,8 @@ Thumbs.db
 
 # Buf local caches
 .buf/
+
+# Rust and Python build outputs
+target/
+__pycache__/
+*.py[cod]
