@@ -69,7 +69,14 @@ type TelegramResetRequest = businessv1.TelegramResetRequest
 type TelegramResetResponse = businessv1.TelegramResetResponse
 type TemplateText = businessv1.TemplateText
 type TemplateLocales = businessv1.TemplateLocales
-type TemplateRevision = businessv1.TemplateRevision
+type TemplateRevision struct {
+EventType string `json:"event_type"`
+Version int64 `json:"version"`
+Locales TemplateLocales `json:"locales"`
+}
+func(v TemplateRevision) Validate()error {type alias TemplateRevision;data,err:=json.Marshal(alias(v));if err!=nil{return err};return Validate("TemplateRevision",data)}
+func(v TemplateRevision) MarshalJSON()([]byte,error){type alias TemplateRevision;data,err:=json.Marshal(alias(v));if err!=nil{return nil,err};if err=Validate("TemplateRevision",data);err!=nil{return nil,err};return data,nil}
+func(v *TemplateRevision) UnmarshalJSON(data []byte)error{if err:=Validate("TemplateRevision",data);err!=nil{return err};type alias TemplateRevision;var a alias;if err:=json.Unmarshal(data,&a);err!=nil{return err};*v=TemplateRevision(a);return nil}
 type TemplatePublish = businessv1.TemplatePublish
 type TemplatesResponse = businessv1.TemplatesResponse
 type ExternalEvent = businessv1.ExternalEvent

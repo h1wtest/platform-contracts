@@ -43,3 +43,29 @@ fn event_version_supports_full_int64_not_rounded_numbers() {
  let bytes=serde_json::to_string(&registered()).unwrap().replace("\"aggregate_version\":1","\"aggregate_version\":9223372036854775808");
  assert!(serde_json::from_str::<eventsv2::Envelope>(&bytes).is_err());
 }
+
+#[test]
+fn serialized_integer_subset_rejects_fraction_and_exponent_tokens() {
+ for token in ["1.0000000000000001","9007199254740991.1","1e0","1E+0","0.0","-0.0","1e-999"] {
+  let raw=format!("{{\"expected_version\":{},\"idempotency_key\":\"key\"}}",token);
+  assert!(serde_json::from_str::<businessv1::VersionCommand>(&raw).is_err(),"accepted {}",token);
+ }
+ for token in ["-9223372036854775808","9223372036854775807","9007199254740991","-9007199254740991"] {
+  let value:Value=serde_json::from_str(token).unwrap();
+  assert_eq!(serde_json::to_string(&value).unwrap(),token);
+ }
+}
+
+#[test]
+fn preview_and_immutable_outcome_consume_strict_producer_bytes() {
+ use platform_contracts::internalhttpv2;
+ let preview=r#"{"locales":{"en":{"subject":"Preview","body":"{{reset_url}}"},"ru":{"subject":"Просмотр","body":"{{reset_url}}"}}}"#;
+ assert!(serde_json::from_str::<businessv1::TemplatePreviewRequest>(preview).is_ok());
+ assert!(serde_json::from_str::<internalhttpv2::TemplatePreviewResponse>(preview).is_ok());
+ for raw in [r#"{"locales":null}"#,r#"{"locales":{"en":{"subject":"x","body":"x"}}}"#] {assert!(serde_json::from_str::<businessv1::TemplatePreviewRequest>(raw).is_err());}
+ let outcome=r#"{"action_id":"019a13cf-0000-7000-8000-000000000001","order_id":"019a13cf-0000-7000-8000-000000000002","user_id":"019a13cf-0000-7000-8000-000000000003","state":"REJECTED","subscription_id":null,"subscription_version":null,"period_start":null,"period_end":null,"reason":"conflict"}"#;
+ let value:internalhttpv2::SubscriptionActionOutcome=serde_json::from_str(outcome).unwrap();
+ assert_eq!(serde_json::to_value(value).unwrap()["subscription_version"],Value::Null);
+ assert!(serde_json::from_str::<internalhttpv2::SubscriptionActionOutcome>(&outcome.replace("REJECTED","PENDING")).is_err());
+ assert!(serde_json::from_str::<internalhttpv2::SubscriptionActionOutcome>(&outcome.replace(",\"reason\":\"conflict\"","")).is_err());
+}

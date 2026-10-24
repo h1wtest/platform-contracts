@@ -20,3 +20,13 @@ func TestCumulativeUSDTDoesNotReuseSaleCeiling(t *testing.T) {
 		t.Fatal("valid maximum sale rejected")
 	}
 }
+
+func TestSerializedCanonicalIntegerTokens(t *testing.T) {
+ registry := Schema(`{"$defs":{"Integer":{"type":"object","additionalProperties":false,"required":["value"],"properties":{"value":{"type":"integer","minimum":-9223372036854775808,"maximum":9223372036854775807}}}}}`)
+ for _, token := range []string{"1.0000000000000001","9007199254740991.1","1e0","1E+0","0.0","-0.0","1e-999"} {
+  if err := registry.Validate("Integer", []byte(`{"value":`+token+`}`)); err == nil { t.Fatalf("accepted %s",token) }
+ }
+ for _, token := range []string{"-9223372036854775808","9223372036854775807","9007199254740991","-9007199254740991"} {
+  if err := registry.Validate("Integer", []byte(`{"value":`+token+`}`)); err != nil { t.Fatalf("rejected %s: %v",token,err) }
+ }
+}

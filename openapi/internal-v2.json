@@ -85,6 +85,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -178,6 +181,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "offer_id",
@@ -270,6 +276,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "offer_id",
@@ -362,6 +371,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -455,6 +467,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -547,6 +562,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -649,6 +667,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -751,6 +772,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "attempt_id",
@@ -843,6 +867,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -936,6 +963,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1028,6 +1058,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1121,6 +1154,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1213,6 +1249,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1305,6 +1344,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1397,6 +1439,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1489,6 +1534,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -1572,6 +1620,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1664,6 +1715,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -1747,6 +1801,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1849,6 +1906,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1951,6 +2011,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2053,6 +2116,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -2136,6 +2202,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -2219,9 +2288,320 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/internal/v2/subscription-action-outcomes/{id}": {
+      "get": {
+        "operationId": "get_internal_v2_subscription_action_outcomes_id",
+        "security": [
+          {
+            "ServiceToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionActionOutcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Dependency unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-success-statuses": [
+          200
+        ],
+        "x-callers": [
+          "billing"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/internal/v2/templates/{event_type}/preview": {
+      "post": {
+        "operationId": "post_internal_v2_templates_event_type_preview",
+        "security": [
+          {
+            "ServiceToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplatePreviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Dependency unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-success-statuses": [
+          200
+        ],
+        "x-callers": [
+          "admin"
+        ],
+        "parameters": [
+          {
+            "name": "event_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-permission": "notifications:templates:write",
+        "x-fresh-mfa": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplatePreviewRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/v2/admin/commands/{id}": {
+      "get": {
+        "operationId": "get_internal_v2_admin_commands_id",
+        "security": [
+          {
+            "ServiceToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Dependency unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-success-statuses": [
+          200
+        ],
+        "x-permission-policy": "admin_workload+original_actor+original_action_permission+fresh_mfa",
+        "x-callers": [
+          "admin"
+        ],
+        "x-not-found-policy": "any_allowed_command_permission({users:write,users:sessions:revoke})+fresh_mfa",
+        "parameters": [
+          {
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -4341,6 +4721,10 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 9007199254740991
+          },
+          "subscription_id": {
+            "type": "string",
+            "format": "uuid"
           }
         }
       },
@@ -5339,7 +5723,8 @@
         "required": [
           "event_type",
           "version",
-          "locales"
+          "locales",
+          "variables"
         ],
         "properties": {
           "event_type": {
@@ -5391,6 +5776,33 @@
           },
           "locales": {
             "$ref": "#/components/schemas/TemplateLocales"
+          },
+          "variables": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "type": "string",
+              "enum": [
+                "code",
+                "expires_at",
+                "verification_url",
+                "reset_url",
+                "device_name",
+                "ip_address",
+                "occurred_at",
+                "order_id",
+                "amount",
+                "currency",
+                "subscription_id",
+                "period_end",
+                "reason",
+                "days",
+                "payout_id",
+                "state",
+                "status",
+                "message"
+              ]
+            }
           }
         }
       },
@@ -7167,13 +7579,109 @@
             "const": true
           }
         }
+      },
+      "TemplatePreviewRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locales"
+        ],
+        "properties": {
+          "locales": {
+            "$ref": "#/components/schemas/TemplateLocales"
+          }
+        }
+      },
+      "TemplatePreviewResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locales"
+        ],
+        "properties": {
+          "locales": {
+            "$ref": "#/components/schemas/TemplateLocales"
+          }
+        }
+      },
+      "SubscriptionActionOutcome": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action_id",
+          "order_id",
+          "user_id",
+          "state",
+          "subscription_id",
+          "subscription_version",
+          "period_start",
+          "period_end",
+          "reason"
+        ],
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "APPLIED",
+              "REJECTED"
+            ]
+          },
+          "subscription_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "subscription_version": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 9223372036854775807
+          },
+          "period_start": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "period_end": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 8000
+          }
+        }
       }
     },
     "securitySchemes": {
       "Session": {
         "type": "apiKey",
         "in": "cookie",
-        "name": "session"
+        "name": "sso_session"
       },
       "ServiceToken": {
         "type": "apiKey",

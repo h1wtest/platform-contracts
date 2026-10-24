@@ -8,11 +8,7 @@
     "/api/v1/catalog": {
       "get": {
         "operationId": "get_api_v1_catalog",
-        "security": [
-          {
-            "Session": []
-          }
-        ],
+        "security": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -85,6 +81,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -168,6 +167,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "catalog:read",
         "x-fresh-mfa": true
@@ -182,7 +184,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -253,6 +255,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          201
+        ],
         "parameters": [],
         "x-permission": "catalog:write",
         "x-fresh-mfa": true,
@@ -277,7 +282,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -348,6 +353,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          201
+        ],
         "parameters": [
           {
             "name": "id",
@@ -452,6 +460,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -485,7 +496,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -556,6 +567,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          201
+        ],
         "parameters": [
           {
             "name": "id",
@@ -660,6 +674,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -752,6 +769,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -856,6 +876,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -960,6 +983,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1064,6 +1090,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1097,7 +1126,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "202": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -1168,6 +1197,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          202
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1259,6 +1291,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -1342,6 +1377,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1434,6 +1472,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1536,6 +1577,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -1619,6 +1663,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1711,6 +1758,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1803,6 +1853,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1905,6 +1958,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2007,6 +2063,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2109,6 +2168,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2211,6 +2273,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2313,6 +2378,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "subscriptions:read",
         "x-fresh-mfa": true
@@ -2398,6 +2466,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2492,6 +2563,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2596,6 +2670,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "subscriptions:compensate",
         "x-fresh-mfa": true,
@@ -2691,6 +2768,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2785,6 +2865,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2889,6 +2972,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -2972,6 +3058,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       },
       "post": {
@@ -3053,6 +3142,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3146,6 +3238,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3248,6 +3343,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "referrals:read",
         "x-fresh-mfa": true
@@ -3331,6 +3429,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "referrals:rates:write",
         "x-fresh-mfa": true,
@@ -3426,6 +3527,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3530,6 +3634,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "order_id",
@@ -3634,6 +3741,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "referrals:read",
         "x-fresh-mfa": true
@@ -3719,6 +3829,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3823,6 +3936,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "referrals:read",
         "x-fresh-mfa": true
@@ -3908,6 +4024,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "billing:status:read",
         "x-fresh-mfa": true
@@ -3993,6 +4112,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4087,6 +4209,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4191,6 +4316,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4295,6 +4423,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4399,6 +4530,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4503,6 +4637,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       },
       "patch": {
@@ -4584,6 +4721,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4677,6 +4817,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4770,6 +4913,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -4853,6 +4999,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4946,6 +5095,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5039,6 +5191,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5132,6 +5287,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "notifications:read",
         "x-fresh-mfa": true
@@ -5217,6 +5375,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "event_type",
@@ -5321,6 +5482,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5425,6 +5589,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -5508,6 +5675,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5601,6 +5771,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5705,6 +5878,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "roles:read",
         "x-fresh-mfa": true
@@ -5790,6 +5966,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "slug",
@@ -5894,6 +6073,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5986,6 +6168,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -6090,6 +6275,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "oauth:clients:write",
         "x-fresh-mfa": true
@@ -6102,7 +6290,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -6173,6 +6361,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          201
+        ],
         "parameters": [],
         "x-permission": "oauth:clients:write",
         "x-fresh-mfa": true,
@@ -6268,6 +6459,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "client_id",
@@ -6372,6 +6566,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "client_id",
@@ -6476,6 +6673,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -6566,6 +6766,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -6668,6 +6871,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -6751,6 +6957,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "referrals:read",
         "x-fresh-mfa": true
@@ -6836,6 +7045,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -6930,6 +7142,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -7013,6 +7228,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "notifications:read",
         "x-fresh-mfa": true
@@ -7098,6 +7316,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "audit:read",
         "x-fresh-mfa": true
@@ -7183,6 +7404,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "users:read",
         "x-fresh-mfa": true
@@ -7268,6 +7492,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -7362,6 +7589,10 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
+        "x-permission-policy": "original_actor+original_action_permission+fresh_mfa",
         "parameters": [
           {
             "name": "id",
@@ -7371,9 +7602,7 @@
               "type": "string"
             }
           }
-        ],
-        "x-permission": "audit:read",
-        "x-fresh-mfa": true
+        ]
       }
     },
     "/api/v1/admin/users/{id}/ban": {
@@ -7386,6 +7615,16 @@
         ],
         "responses": {
           "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandStatus"
+                }
+              }
+            }
+          },
+          "202": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -7456,6 +7695,10 @@
             }
           }
         },
+        "x-success-statuses": [
+          200,
+          202
+        ],
         "parameters": [
           {
             "name": "id",
@@ -7499,101 +7742,7 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthenticated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Dependency unavailable",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-permission": "users:write",
-        "x-fresh-mfa": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CommandRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/admin/users/{id}/revoke-sessions": {
-      "post": {
-        "operationId": "post_api_v1_admin_users_id_revoke_sessions",
-        "security": [
-          {
-            "Session": []
-          }
-        ],
-        "responses": {
-          "200": {
+          "202": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -7664,6 +7813,128 @@
             }
           }
         },
+        "x-success-statuses": [
+          200,
+          202
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-permission": "users:write",
+        "x-fresh-mfa": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommandRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{id}/revoke-sessions": {
+      "post": {
+        "operationId": "post_api_v1_admin_users_id_revoke_sessions",
+        "security": [
+          {
+            "Session": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandStatus"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Dependency unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-success-statuses": [
+          200,
+          202
+        ],
         "parameters": [
           {
             "name": "id",
@@ -7768,6 +8039,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -7872,6 +8146,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -7966,6 +8243,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -8058,6 +8338,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "id",
@@ -8075,11 +8358,7 @@
     "/api/v1/catalog/pages": {
       "get": {
         "operationId": "get_api_v1_catalog_pages",
-        "security": [
-          {
-            "Session": []
-          }
-        ],
+        "security": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -8152,6 +8431,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -8235,6 +8517,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [],
         "x-permission": "catalog:read",
         "x-fresh-mfa": true
@@ -8250,6 +8535,16 @@
         ],
         "responses": {
           "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandStatus"
+                }
+              }
+            }
+          },
+          "202": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -8320,6 +8615,11 @@
             }
           }
         },
+        "x-success-statuses": [
+          200,
+          202
+        ],
+        "x-permission-policy": "original_actor+original_action_permission+fresh_mfa+csrf",
         "parameters": [
           {
             "name": "id",
@@ -8422,6 +8722,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": []
       }
     },
@@ -8505,6 +8808,9 @@
             }
           }
         },
+        "x-success-statuses": [
+          200
+        ],
         "parameters": [
           {
             "name": "client_id",
@@ -8515,6 +8821,113 @@
             }
           }
         ]
+      }
+    },
+    "/api/v1/admin/templates/{event_type}/preview": {
+      "post": {
+        "operationId": "post_api_v1_admin_templates_event_type_preview",
+        "security": [
+          {
+            "Session": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplatePreviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Dependency unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-success-statuses": [
+          200
+        ],
+        "parameters": [
+          {
+            "name": "event_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-permission": "notifications:templates:write",
+        "x-fresh-mfa": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplatePreviewRequest"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -10996,7 +11409,8 @@
         "required": [
           "event_type",
           "version",
-          "locales"
+          "locales",
+          "variables"
         ],
         "properties": {
           "event_type": {
@@ -11048,6 +11462,33 @@
           },
           "locales": {
             "$ref": "#/components/schemas/TemplateLocales"
+          },
+          "variables": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "type": "string",
+              "enum": [
+                "code",
+                "expires_at",
+                "verification_url",
+                "reset_url",
+                "device_name",
+                "ip_address",
+                "occurred_at",
+                "order_id",
+                "amount",
+                "currency",
+                "subscription_id",
+                "period_end",
+                "reason",
+                "days",
+                "payout_id",
+                "state",
+                "status",
+                "message"
+              ]
+            }
           }
         }
       },
@@ -12762,13 +13203,37 @@
             "const": true
           }
         }
+      },
+      "TemplatePreviewRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locales"
+        ],
+        "properties": {
+          "locales": {
+            "$ref": "#/components/schemas/TemplateLocales"
+          }
+        }
+      },
+      "TemplatePreviewResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locales"
+        ],
+        "properties": {
+          "locales": {
+            "$ref": "#/components/schemas/TemplateLocales"
+          }
+        }
       }
     },
     "securitySchemes": {
       "Session": {
         "type": "apiKey",
         "in": "cookie",
-        "name": "session"
+        "name": "sso_session"
       },
       "ServiceToken": {
         "type": "apiKey",

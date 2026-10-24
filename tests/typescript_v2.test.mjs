@@ -33,6 +33,13 @@ test('strict integer parser rejects duplicates and JSON syntax errors',()=>{
  assert.throws(()=>wire.parseStrictJSON('01'));
  assert.throws(()=>wire.parseStrictJSON('['.repeat(130)+'0'+']'.repeat(130)));
 });
+test('serialized integer subset rejects fractional and exponent tokens before rounding',()=>{
+ for(const token of ['1.0000000000000001','9007199254740991.1','1e0','1E+0','0.0','-0.0','1e-999']){
+  assert.throws(()=>wire.parseStrictJSON('{"expected_version":'+token+'}'),token);
+ }
+ assert.deepEqual(wire.parseStrictJSON('[true,false,null]'),[true,false,null]);
+ for(const token of ['-9223372036854775808','9223372036854775807','9007199254740991','-9007199254740991'])assert.equal(wire.stringifyStrictJSON(wire.parseStrictJSON(token)),token);
+});
 
 test('serialized audit owner pages decode with nullable identities and optional projection metadata',()=>{
  const id='019a13cf-0000-7000-8000-000000000002';
@@ -63,4 +70,18 @@ test('serialized own OAuth grants expose safe fields with strict scopes and time
  for(const invalid of [{...producer,items:[{...grant,last_used_at:null}]},{...producer,items:[{...grant,scopes:['admin']}]},{...producer,items:Array.from({length:101},()=>grant)}])assert.throws(()=>business.decodeOAuthGrantsResponse(wire.parseStrictJSON(JSON.stringify(invalid))));
  const revoked=business.decodeOAuthGrantRevoked(wire.parseStrictJSON(JSON.stringify({client_id:'client-one',revoked:true})));assert.equal(revoked.revoked,true);
  assert.throws(()=>business.decodeOAuthGrantRevoked({client_id:'client-one',revoked:false}));
+});
+test('template authority variables and nonpublishing preview DTOs consume strict producer bytes',()=>{
+ const locales={en:{subject:'Preview',body:'{{reset_url}}'},ru:{subject:'Просмотр',body:'{{reset_url}}'}};
+ for(const decode of [business.decodeTemplatePreviewRequest,business.decodeTemplatePreviewResponse]){
+  const decoded=decode(wire.parseStrictJSON(JSON.stringify({locales})));
+  for(const locale of ['en','ru']){
+   assert.equal(decoded.locales[locale].subject,locales[locale].subject);
+   assert.equal(decoded.locales[locale].body,locales[locale].body);
+  }
+  for(const invalid of [{locales:null},{locales,extra:true},{locales:{en:locales.en}}])assert.throws(()=>decode(wire.parseStrictJSON(JSON.stringify(invalid))));
+ }
+ const revision={event_type:'notification.password_reset',version:1,locales,variables:['expires_at','reset_url']};
+ assert.equal(business.decodeTemplateRevision(wire.parseStrictJSON(JSON.stringify(revision))).variables[1],'reset_url');
+ for(const invalid of [{...revision,variables:['secret']},{...revision,variables:Array(33).fill('reset_url')},{event_type:revision.event_type,version:1,locales}])assert.throws(()=>business.decodeTemplateRevision(wire.parseStrictJSON(JSON.stringify(invalid))));
 });

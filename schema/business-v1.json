@@ -6,556 +6,842 @@
     {
       "method": "GET",
       "path": "/api/v1/catalog",
-      "response": "CatalogResponse"
+      "response": "CatalogResponse",
+      "x-success-statuses": [
+        200
+      ],
+      "x-anonymous": true
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/catalog",
       "response": "CatalogResponse",
-      "permission": "catalog:read"
+      "permission": "catalog:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/products",
       "response": "Product",
       "request": "ProductCreate",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        201
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/products/{id}/plans",
       "response": "Plan",
       "request": "PlanCreate",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        201
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/catalog/plans/{id}",
       "response": "Plan",
       "request": "PlanUpdate",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/plans/{id}/drafts",
       "response": "PlanRevision",
       "request": "VersionCommand",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        201
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/catalog/revisions/{id}",
       "response": "PlanRevision",
-      "permission": "catalog:read"
+      "permission": "catalog:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/catalog/revisions/{id}",
       "response": "PlanRevision",
       "request": "RevisionUpdate",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/revisions/{id}/preview",
       "response": "PlanRevision",
       "request": "RevisionPreview",
-      "permission": "catalog:write"
+      "permission": "catalog:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/revisions/{id}/publish",
       "response": "PlanRevision",
       "request": "VersionCommand",
-      "permission": "catalog:publish"
+      "permission": "catalog:publish",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/catalog/revisions/{id}/archive",
       "response": "PlanRevision",
       "request": "VersionCommand",
-      "permission": "catalog:publish"
+      "permission": "catalog:publish",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/orders",
       "response": "Order",
-      "request": "CheckoutRequest"
+      "request": "CheckoutRequest",
+      "x-success-statuses": [
+        202
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/orders",
-      "response": "OrdersResponse"
+      "response": "OrdersResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/orders/{id}",
-      "response": "Order"
+      "response": "Order",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/orders/{id}/cancel",
       "response": "Order",
-      "request": "VersionCommand"
+      "request": "VersionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/subscriptions",
-      "response": "SubscriptionsResponse"
+      "response": "SubscriptionsResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/subscriptions/{id}",
-      "response": "Subscription"
+      "response": "Subscription",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/subscriptions/{id}/entitlement",
-      "response": "Entitlement"
+      "response": "Entitlement",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/subscriptions/{id}/cancel",
       "response": "Subscription",
-      "request": "SubscriptionCommand"
+      "request": "SubscriptionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/subscriptions/{id}/resume",
       "response": "Subscription",
-      "request": "SubscriptionCommand"
+      "request": "SubscriptionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/subscriptions/{id}/downgrade",
       "response": "Subscription",
-      "request": "SubscriptionCommand"
+      "request": "SubscriptionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/subscriptions/{id}/upgrade-quote",
       "response": "PreparedAction",
-      "request": "SubscriptionCommand"
+      "request": "SubscriptionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/subscriptions/{id}/renew",
       "response": "PreparedAction",
-      "request": "SubscriptionCommand"
+      "request": "SubscriptionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/subscriptions",
       "response": "SubscriptionsResponse",
-      "permission": "subscriptions:read"
+      "permission": "subscriptions:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/subscriptions/{id}",
       "response": "Subscription",
-      "permission": "subscriptions:read"
+      "permission": "subscriptions:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/subscriptions/{id}/close",
       "response": "Subscription",
       "request": "ReasonCommand",
-      "permission": "subscriptions:close"
+      "permission": "subscriptions:close",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/subscriptions/compensations/preview",
       "response": "Compensation",
       "request": "CompensationPreviewRequest",
-      "permission": "subscriptions:compensate"
+      "permission": "subscriptions:compensate",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/subscriptions/compensations/{id}",
       "response": "Compensation",
-      "permission": "subscriptions:read"
+      "permission": "subscriptions:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/subscriptions/compensations/{id}/apply",
       "response": "Compensation",
       "request": "ReasonCommand",
-      "permission": "subscriptions:compensate"
+      "permission": "subscriptions:compensate",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/referrals",
-      "response": "ReferralSummary"
+      "response": "ReferralSummary",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/referrals/payouts",
-      "response": "PayoutsResponse"
+      "response": "PayoutsResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/referrals/payouts",
       "response": "Payout",
-      "request": "PayoutCreate"
+      "request": "PayoutCreate",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/referrals/payouts/{id}/cancel",
       "response": "Payout",
-      "request": "VersionCommand"
+      "request": "VersionCommand",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/referrals/rate",
       "response": "Rate",
-      "permission": "referrals:read"
+      "permission": "referrals:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/referrals/rate",
       "response": "Rate",
       "request": "RateUpdate",
-      "permission": "referrals:rates:write"
+      "permission": "referrals:rates:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/referrals/payouts/{id}/decision",
       "response": "Payout",
       "request": "PayoutDecision",
-      "permission": "referrals:payouts:decide"
+      "permission": "referrals:payouts:decide",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/referrals/commissions/{order_id}/reverse",
       "response": "CommissionReversal",
       "request": "ReasonCommand",
-      "permission": "referrals:payouts:decide"
+      "permission": "referrals:payouts:decide",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/referrals/partners",
       "response": "PartnersResponse",
-      "permission": "referrals:read"
+      "permission": "referrals:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/referrals/partners/{id}/rate",
       "response": "PartnerRate",
       "request": "PartnerRateUpdate",
-      "permission": "referrals:rates:write"
+      "permission": "referrals:rates:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/referrals/payouts",
       "response": "PayoutsResponse",
-      "permission": "referrals:read"
+      "permission": "referrals:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/payments",
       "response": "OrdersResponse",
-      "permission": "billing:status:read"
+      "permission": "billing:status:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/payments/{id}",
       "response": "PaymentDetail",
-      "permission": "billing:read"
+      "permission": "billing:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/payments/{id}/accept",
       "response": "Order",
       "request": "PaymentAcceptRequest",
-      "permission": "billing:resolve"
+      "permission": "billing:resolve",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/payments/{id}/reject",
       "response": "Order",
       "request": "ReasonCommand",
-      "permission": "billing:resolve"
+      "permission": "billing:resolve",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/payments/{id}/reverify",
       "response": "Order",
       "request": "ReasonCommand",
-      "permission": "billing:resolve"
+      "permission": "billing:resolve",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/payments/{id}/retry-fulfillment",
       "response": "Order",
       "request": "ReasonCommand",
-      "permission": "billing:resolve"
+      "permission": "billing:resolve",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/users/me",
-      "response": "ProfileResponse"
+      "response": "ProfileResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PATCH",
       "path": "/api/v1/users/me",
       "response": "ProfileResponse",
-      "request": "ProfileChanges"
+      "request": "ProfileChanges",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PATCH",
       "path": "/api/v1/users/me/notifications",
       "response": "ProfileResponse",
-      "request": "PreferencesChanges"
+      "request": "PreferencesChanges",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/users/me/telegram",
-      "response": "TelegramStatus"
+      "response": "TelegramStatus",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/users/me/telegram/link",
       "response": "TelegramLinkResponse",
-      "request": "EmptyRequest"
+      "request": "EmptyRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/users/me/telegram/confirm",
       "response": "TelegramStatus",
-      "request": "TelegramConfirmRequest"
+      "request": "TelegramConfirmRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/users/me/telegram/unlink",
       "response": "TelegramUnlinkResponse",
-      "request": "EmptyRequest"
+      "request": "EmptyRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/templates",
       "response": "TemplatesResponse",
-      "permission": "notifications:read"
+      "permission": "notifications:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/templates/{event_type}",
       "response": "TemplateRevision",
       "request": "TemplatePublish",
-      "permission": "notifications:templates:write"
+      "permission": "notifications:templates:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/users/{id}/telegram/reset",
       "response": "TelegramResetResponse",
       "request": "TelegramResetRequest",
-      "permission": "notifications:bindings:reset"
+      "permission": "notifications:bindings:reset",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/auth/sessions",
-      "response": "SessionsResponse"
+      "response": "SessionsResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/auth/sessions/revoke-others",
       "response": "RevokedResponse",
-      "request": "EmptyRequest"
+      "request": "EmptyRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/users/{id}/sessions/revoke",
       "response": "RevokedResponse",
       "request": "ReasonRequest",
-      "permission": "users:sessions:revoke"
+      "permission": "users:sessions:revoke",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/roles",
       "response": "RolesResponse",
-      "permission": "roles:read"
+      "permission": "roles:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/roles/{slug}/permissions",
       "response": "RolePermissionsResponse",
       "request": "RolePermissionsRequest",
-      "permission": "roles:write"
+      "permission": "roles:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/users/{id}/roles",
       "response": "UserRoles",
-      "permission": "roles:read"
+      "permission": "roles:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "PUT",
       "path": "/api/v1/admin/users/{id}/roles",
       "response": "UserRoles",
       "request": "UserRolesRequest",
-      "permission": "roles:assign"
+      "permission": "roles:assign",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/oauth/clients",
       "response": "OAuthClientsResponse",
-      "permission": "oauth:clients:write"
+      "permission": "oauth:clients:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/oauth/clients",
       "response": "OAuthClientCreated",
       "request": "OAuthClientCreate",
-      "permission": "oauth:clients:write"
+      "permission": "oauth:clients:write",
+      "x-success-statuses": [
+        201
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/oauth/clients/{client_id}/rotate",
       "response": "OAuthSecret",
       "request": "ReasonRequest",
-      "permission": "oauth:clients:write"
+      "permission": "oauth:clients:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/oauth/clients/{client_id}/revoke",
       "response": "OAuthRevoked",
       "request": "ReasonRequest",
-      "permission": "oauth:clients:write"
+      "permission": "oauth:clients:write",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/auth/oauth/consent/{id}",
-      "response": "Consent"
+      "response": "Consent",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/auth/oauth/consent/{id}",
       "response": "ConsentRedirect",
-      "request": "ConsentDecision"
+      "request": "ConsentDecision",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/users/me/overview",
-      "response": "Overview"
+      "response": "Overview",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/referrals/rate/history",
       "response": "RateHistoryResponse",
-      "permission": "referrals:read"
+      "permission": "referrals:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/referrals/partners/{id}/rate/history",
       "response": "RateHistoryResponse",
-      "permission": "referrals:read"
+      "permission": "referrals:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/notifications",
-      "response": "DeliveriesResponse"
+      "response": "DeliveriesResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/deliveries",
       "response": "DeliveriesResponse",
-      "permission": "notifications:read"
+      "permission": "notifications:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/audit",
       "response": "AuditResponse",
-      "permission": "audit:read"
+      "permission": "audit:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/users",
       "response": "UserSummaries",
-      "permission": "users:read"
+      "permission": "users:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/users/{id}",
       "response": "UserSummary",
-      "permission": "users:read"
+      "permission": "users:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/commands/{id}",
       "response": "CommandStatus",
-      "permission": "audit:read"
+      "x-success-statuses": [
+        200
+      ],
+      "permission_policy": "original_actor+original_action_permission+fresh_mfa"
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/users/{id}/ban",
       "response": "CommandStatus",
       "request": "CommandRequest",
-      "permission": "users:write"
+      "permission": "users:write",
+      "x-success-statuses": [
+        200,
+        202
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/users/{id}/unban",
       "response": "CommandStatus",
       "request": "CommandRequest",
-      "permission": "users:write"
+      "permission": "users:write",
+      "x-success-statuses": [
+        200,
+        202
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/users/{id}/revoke-sessions",
       "response": "CommandStatus",
       "request": "CommandRequest",
-      "permission": "users:sessions:revoke"
+      "permission": "users:sessions:revoke",
+      "x-success-statuses": [
+        200,
+        202
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/deliveries/{id}/replay",
       "response": "ReplayResponse",
       "request": "ReplayCommand",
-      "permission": "notifications:replay"
+      "permission": "notifications:replay",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/payments/{id}/status",
       "response": "Order",
-      "permission": "billing:status:read"
+      "permission": "billing:status:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/subscriptions/{id}/history",
-      "response": "SubscriptionHistoryResponse"
+      "response": "SubscriptionHistoryResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/subscriptions/{id}/history",
       "response": "SubscriptionHistoryResponse",
-      "permission": "subscriptions:read"
+      "permission": "subscriptions:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/catalog/pages",
-      "response": "CatalogPage"
+      "response": "CatalogPage",
+      "x-success-statuses": [
+        200
+      ],
+      "x-anonymous": true
     },
     {
       "method": "GET",
       "path": "/api/v1/admin/catalog/pages",
       "response": "CatalogPage",
-      "permission": "catalog:read"
+      "permission": "catalog:read",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/api/v1/admin/commands/{id}/resume",
       "request": "EmptyRequest",
       "response": "CommandStatus",
-      "permission_policy": "original command mutation permission and original actor, fresh MFA and CSRF"
+      "permission_policy": "original_actor+original_action_permission+fresh_mfa+csrf",
+      "x-success-statuses": [
+        200,
+        202
+      ]
     },
     {
       "method": "GET",
       "path": "/api/v1/auth/oauth/grants",
-      "response": "OAuthGrantsResponse"
+      "response": "OAuthGrantsResponse",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "DELETE",
       "path": "/api/v1/auth/oauth/grants/{client_id}",
-      "response": "OAuthGrantRevoked"
+      "response": "OAuthGrantRevoked",
+      "x-success-statuses": [
+        200
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/templates/{event_type}/preview",
+      "request": "TemplatePreviewRequest",
+      "response": "TemplatePreviewResponse",
+      "permission": "notifications:templates:write",
+      "x-success-statuses": [
+        200
+      ]
     }
   ],
   "$defs": {
@@ -3035,7 +3321,8 @@
       "required": [
         "event_type",
         "version",
-        "locales"
+        "locales",
+        "variables"
       ],
       "properties": {
         "event_type": {
@@ -3087,6 +3374,33 @@
         },
         "locales": {
           "$ref": "#/$defs/TemplateLocales"
+        },
+        "variables": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "enum": [
+              "code",
+              "expires_at",
+              "verification_url",
+              "reset_url",
+              "device_name",
+              "ip_address",
+              "occurred_at",
+              "order_id",
+              "amount",
+              "currency",
+              "subscription_id",
+              "period_end",
+              "reason",
+              "days",
+              "payout_id",
+              "state",
+              "status",
+              "message"
+            ]
+          }
         }
       }
     },
@@ -4799,6 +5113,30 @@
         "revoked": {
           "type": "boolean",
           "const": true
+        }
+      }
+    },
+    "TemplatePreviewRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locales"
+      ],
+      "properties": {
+        "locales": {
+          "$ref": "#/$defs/TemplateLocales"
+        }
+      }
+    },
+    "TemplatePreviewResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locales"
+      ],
+      "properties": {
+        "locales": {
+          "$ref": "#/$defs/TemplateLocales"
         }
       }
     }

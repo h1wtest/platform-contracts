@@ -8,153 +8,265 @@
       "path": "/internal/v2/introspect",
       "response": "IntrospectResponse",
       "owner": "identity",
-      "request": "IntrospectRequest"
+      "request": "IntrospectRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/catalog/offers/{offer_id}",
       "response": "OfferSnapshot",
-      "owner": "catalog"
+      "owner": "catalog",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/catalog/offers/{offer_id}/snapshot",
       "response": "OfferSnapshot",
-      "owner": "catalog"
+      "owner": "catalog",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/subscription-actions/prepare",
       "response": "PreparedAction",
       "owner": "subscription",
-      "request": "PrepareActionRequest"
+      "request": "PrepareActionRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/subscription-actions/{id}",
       "response": "PreparedAction",
-      "owner": "subscription"
+      "owner": "subscription",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/subscription-actions/{id}/start",
       "response": "PreparedAction",
       "owner": "subscription",
-      "request": "StartActionRequest"
+      "request": "StartActionRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/subscription-actions/{id}/cancel",
       "response": "PreparedAction",
       "owner": "subscription",
-      "request": "CancelActionRequest"
+      "request": "CancelActionRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/payment-attempts/{attempt_id}/cancellation-proof",
       "response": "CancellationProof",
-      "owner": "billing"
+      "owner": "billing",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/referral-claims",
       "response": "ReferralClaim",
       "owner": "referral",
-      "request": "ReferralClaimRequest"
+      "request": "ReferralClaimRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/claims/{id}",
       "response": "ReferralClaim",
-      "owner": "referral"
+      "owner": "referral",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/referral-quotes",
       "response": "CommissionQuote",
       "owner": "referral",
-      "request": "ReferralQuoteRequest"
+      "request": "ReferralQuoteRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/quotes/{id}",
       "response": "CommissionQuote",
-      "owner": "referral"
+      "owner": "referral",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/users/{id}/recipient-policy",
       "response": "RecipientPolicy",
-      "owner": "profile"
+      "owner": "profile",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/users/{id}/eligibility",
       "response": "UserEligibility",
-      "owner": "identity"
+      "owner": "identity",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/users/{id}/notification-flow",
       "response": "NotificationFlow",
-      "owner": "identity"
+      "owner": "identity",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/users",
       "response": "RegistrationSnapshotsResponse",
-      "owner": "identity"
+      "owner": "identity",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/subscriptions/{id}",
       "response": "SubscriptionEligibility",
-      "owner": "subscription"
+      "owner": "subscription",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/notification-recipients",
       "response": "NotificationRecipientsResponse",
-      "owner": "identity"
+      "owner": "identity",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/admin/users/{id}/ban",
       "response": "CommandResult",
       "owner": "identity",
-      "request": "CommandRequest"
+      "request": "CommandRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/admin/users/{id}/unban",
       "response": "CommandResult",
       "owner": "identity",
-      "request": "CommandRequest"
+      "request": "CommandRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "POST",
       "path": "/internal/v2/admin/users/{id}/revoke-sessions",
       "response": "CommandResult",
       "owner": "identity",
-      "request": "CommandRequest"
+      "request": "CommandRequest",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/admin/users",
       "response": "UsersResponse",
-      "owner": "identity"
+      "owner": "identity",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/referrals/summary",
       "response": "ReferralSummary",
-      "owner": "referral"
+      "owner": "referral",
+      "x-success-statuses": [
+        200
+      ]
     },
     {
       "method": "GET",
       "path": "/internal/v2/subscription-actions/by-operation/{operation_id}",
       "response": "PreparedAction",
-      "owner": "subscription"
+      "owner": "subscription",
+      "x-success-statuses": [
+        200
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/internal/v2/subscription-action-outcomes/{id}",
+      "owner": "subscription",
+      "callers": [
+        "billing"
+      ],
+      "response": "SubscriptionActionOutcome",
+      "x-success-statuses": [
+        200
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/internal/v2/templates/{event_type}/preview",
+      "owner": "notification",
+      "callers": [
+        "admin"
+      ],
+      "permission": "notifications:templates:write",
+      "request": "TemplatePreviewRequest",
+      "response": "TemplatePreviewResponse",
+      "x-success-statuses": [
+        200
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/internal/v2/admin/commands/{id}",
+      "owner": "identity",
+      "callers": [
+        "admin"
+      ],
+      "response": "CommandStatus",
+      "permission_policy": "admin_workload+original_actor+original_action_permission+fresh_mfa",
+      "x-not-found-policy": "any_allowed_command_permission({users:write,users:sessions:revoke})+fresh_mfa",
+      "x-success-statuses": [
+        200
+      ]
     }
   ],
   "$defs": {
@@ -2265,6 +2377,10 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 9007199254740991
+        },
+        "subscription_id": {
+          "type": "string",
+          "format": "uuid"
         }
       }
     },
@@ -3263,7 +3379,8 @@
       "required": [
         "event_type",
         "version",
-        "locales"
+        "locales",
+        "variables"
       ],
       "properties": {
         "event_type": {
@@ -3315,6 +3432,33 @@
         },
         "locales": {
           "$ref": "#/$defs/TemplateLocales"
+        },
+        "variables": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "enum": [
+              "code",
+              "expires_at",
+              "verification_url",
+              "reset_url",
+              "device_name",
+              "ip_address",
+              "occurred_at",
+              "order_id",
+              "amount",
+              "currency",
+              "subscription_id",
+              "period_end",
+              "reason",
+              "days",
+              "payout_id",
+              "state",
+              "status",
+              "message"
+            ]
+          }
         }
       }
     },
@@ -5089,6 +5233,102 @@
         "revoked": {
           "type": "boolean",
           "const": true
+        }
+      }
+    },
+    "TemplatePreviewRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locales"
+      ],
+      "properties": {
+        "locales": {
+          "$ref": "#/$defs/TemplateLocales"
+        }
+      }
+    },
+    "TemplatePreviewResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locales"
+      ],
+      "properties": {
+        "locales": {
+          "$ref": "#/$defs/TemplateLocales"
+        }
+      }
+    },
+    "SubscriptionActionOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "order_id",
+        "user_id",
+        "state",
+        "subscription_id",
+        "subscription_version",
+        "period_start",
+        "period_end",
+        "reason"
+      ],
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "order_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "APPLIED",
+            "REJECTED"
+          ]
+        },
+        "subscription_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "subscription_version": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 9223372036854775807
+        },
+        "period_start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "period_end": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 8000
         }
       }
     }

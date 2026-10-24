@@ -133,9 +133,15 @@ def generate_schema(stem,pkg):
     return schema
 
 def openapi(schema,public):
-    doc={'openapi':'3.1.0','info':{'title':'Platform '+('public business' if public else 'internal workload')+' API','version':'1.0.0' if public else '2.0.0'},'paths':{},'components':{'schemas':schema['$defs'],'securitySchemes':{'Session':{'type':'apiKey','in':'cookie','name':'session'},'ServiceToken':{'type':'apiKey','in':'header','name':'X-Service-Token'}}}}
+    doc={'openapi':'3.1.0','info':{'title':'Platform '+('public business' if public else 'internal workload')+' API','version':'1.0.0' if public else '2.0.0'},'paths':{},'components':{'schemas':schema['$defs'],'securitySchemes':{'Session':{'type':'apiKey','in':'cookie','name':'sso_session'},'ServiceToken':{'type':'apiKey','in':'header','name':'X-Service-Token'}}}}
     for endpoint in schema['x-endpoints']:
-        operation={'operationId':endpoint['method'].lower()+'_'+endpoint['path'].strip('/').replace('/','_').replace('{','').replace('}','').replace('-','_'),'security':[{'Session' if public else 'ServiceToken':[]}],'responses':{'200':{'description':'Success','content':{'application/json':{'schema':{'$ref':'#/components/schemas/'+endpoint['response']}}}},**{str(c):{'description':d,'content':{'application/json':{'schema':{'$ref':'#/components/schemas/ErrorResponse'}}}} for c,d in [(400,'Invalid request'),(401,'Unauthenticated'),(403,'Forbidden'),(404,'Not found'),(409,'Conflict'),(503,'Dependency unavailable')]}}}
+        statuses=endpoint['x-success-statuses']
+        if not statuses or len(set(statuses))!=len(statuses) or any(type(code) is not int or code not in (200,201,202,204) for code in statuses):raise ValueError('Explicit supported success statuses required')
+        responses={str(code):({'description':'Success'} if code==204 else {'description':'Success','content':{'application/json':{'schema':{'$ref':'#/components/schemas/'+endpoint['response']}}}}) for code in statuses}
+        responses.update({str(c):{'description':d,'content':{'application/json':{'schema':{'$ref':'#/components/schemas/ErrorResponse'}}}} for c,d in [(400,'Invalid request'),(401,'Unauthenticated'),(403,'Forbidden'),(404,'Not found'),(409,'Conflict'),(503,'Dependency unavailable')]})
+        operation={'operationId':endpoint['method'].lower()+'_'+endpoint['path'].strip('/').replace('/','_').replace('{','').replace('}','').replace('-','_'),'security':[] if endpoint.get('x-anonymous') else [{'Session' if public else 'ServiceToken':[]}],'responses':responses,'x-success-statuses':statuses}
+        for field in ('permission_policy','callers','x-not-found-policy'):
+            if field in endpoint:operation[field if field.startswith('x-') else 'x-'+field.replace('_','-')]=endpoint[field]
         import re
         operation['parameters']=[{'name':p,'in':'path','required':True,'schema':{'type':'string'}} for p in re.findall(r'\{([^}]+)\}',endpoint['path'])]
         if 'permission' in endpoint:operation['x-permission']=endpoint['permission'];operation['x-fresh-mfa']=True
